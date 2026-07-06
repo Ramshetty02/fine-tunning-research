@@ -1,0 +1,39 @@
+Round 4 SAE feature output
+=========================
+
+These are the most interesting round-4 sparse autoencoder features that emerged from the layer-12 analysis.
+Interpretations are approximate and human-readable, but the patterns are striking enough to browse.
+
+Top-shifted / amplified features
+--------------------------------
+1. Division detector
+   - Strongly activates on arithmetic division patterns such as "12 / 3" and "1000 / 2".
+   - This is the cleanest example of a monosemantic arithmetic feature.
+
+2. Totals / aggregation feature
+   - Fires when the model is accumulating or combining quantities across steps.
+   - Common in multi-step arithmetic where intermediate totals matter.
+
+3. Comparison feature
+   - Activates on comparison-style language such as "7 more than" or other relative-difference phrasing.
+   - Suggests the model has a dedicated direction for relational arithmetic.
+
+4. Rates / scaling feature
+   - Fires on rate-style reasoning such as "$ / week" and yearly scaling patterns.
+   - A good example of a unit-conversion / proportional reasoning feature.
+
+5. Training-format boundary feature
+   - Activates precisely around the "?\nAnswer:" boundary used in the training format.
+   - This looks like a structural cue feature rather than a math-only one.
+
+Most-suppressed feature
+-----------------------
+6. Formal algebra feature
+   - One of the strongest suppressed directions.
+   - It fires on formal algebraic phrasing such as "dividing both sides by 11".
+   - This is consistent with the model shifting away from algebraic register and toward GSM8K-style arithmetic procedure.
+
+Overall readout
+---------------
+The round-4 SAE found a small set of highly interpretable directions that line up with arithmetic behavior.
+The effect size of each feature was modest, which fits the broader story: fine-tuning nudged the model in a low-rank, partially interpretable way rather than rewriting it wholesale.
